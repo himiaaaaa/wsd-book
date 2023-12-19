@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book</title>
+    </head>
+    <body>
+        <p>Add a book</p>
+        <form method="POST" action="/books">
+            <label for="name">Book name:</label>
+            <input id="name" type="text" name="name"/></br>
+            <label for="pages">Number of pages:</label>
+            <input id="pages" type="text" name="pages"/></br>
+            <label for="isbn">ISBN:</label>
+            <input id="isbn" type="text" name="isbn"/></br>
+            <input type="submit" value="Add"/>
+        </form>
+        <p>Existing books:</p>
+        <ul>
+        <% it.books.forEach((book) => { %>
+            <li>
+                <a href="/books/<%= book.id %>">
+                    <%= book.name %>
+                </a>
+                <form method="POST" action="/books/<%= book.id %>/delete">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </li>
+        <% }) %>
+        </ul>
+    </body>
+</html>
