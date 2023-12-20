@@ -5,13 +5,16 @@
     </head>
     <body>
         <p>Add a book</p>
+        <%~ include('/partials/validation-errors.eta', { field: "Book name", errors: it?.errors?.name?._errors }) %>
+        <%~ include('/partials/validation-errors.eta', { field: "Number of pages", errors: it?.errors?.pages?._errors }) %>
+        <%~ include('/partials/validation-errors.eta', { field: "ISBN", errors: it?.errors?.isbn?._errors }) %>
         <form method="POST" action="/books">
             <label for="name">Book name:</label>
-            <input id="name" type="text" name="name"/></br>
+            <input id="name" type="text" name="name" value="<%= it?.name ?? '' %>"/></br>
             <label for="pages">Number of pages:</label>
-            <input id="pages" type="text" name="pages"/></br>
+            <input id="pages" type="number" name="pages" value="<%= it?.pages ?? '' %>"/></br>
             <label for="isbn">ISBN:</label>
-            <input id="isbn" type="text" name="isbn"/></br>
+            <input id="isbn" type="text" name="isbn" value="<%= it?.isbn ?? '' %>"/></br>
             <input type="submit" value="Add"/>
         </form>
         <p>Existing books:</p>
